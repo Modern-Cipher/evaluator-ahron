@@ -1,0 +1,193 @@
+/* =========================================
+   BASE STYLES & TYPOGRAPHY
+   ========================================= */
+body { 
+    background-color: #f4f7f6;
+    font-family: 'Poppins', sans-serif; 
+    color: #2c3e50;
+    padding-top: 80px; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.app-wrapper { flex: 1; }
+
+/* =========================================
+   BSU MAROON THEME & BRANDING
+   ========================================= */
+.custom-navbar { 
+    background-color: #800000; 
+    border-bottom: 4px solid #ffc107; 
+}
+
+.text-primary { color: #800000 !important; }
+.bg-primary { background-color: #800000 !important; }
+.text-muted { color: #64748b !important; }
+.text-dark { color: #1e293b !important; }
+
+/* FIX PARA SA CYCLE 2026 BADGE */
+.badge-maroon-soft {
+    background-color: #f9e6e6; /* Light pastel maroon */
+    color: #800000 !important; /* Dark maroon text */
+    border: 1px solid #800000;
+}
+
+/* Custom Maroon Buttons */
+.btn-maroon { 
+    background-color: #800000; 
+    color: #ffffff; 
+    border: 2px solid #800000;
+    transition: all 0.3s ease;
+}
+.btn-maroon:hover:not(:disabled) { 
+    background-color: #5c0000; 
+    border-color: #5c0000;
+    color: #ffffff;
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(128,0,0,0.2); 
+}
+.btn-outline-maroon { 
+    border: 2px solid #800000; 
+    color: #800000; 
+    background: transparent; 
+    transition: all 0.3s ease;
+}
+.btn-outline-maroon:hover { 
+    background-color: #800000; 
+    color: #ffffff; 
+}
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   NAVBAR LINKS
+   ========================================= */
+.nav-menu-link { 
+    padding: 8px 16px !important; 
+    transition: 0.3s; 
+    border-radius: 6px; 
+    color: #ffffff !important; 
+}
+.nav-menu-link:hover, .nav-menu-link.active { 
+    background-color: rgba(255, 255, 255, 0.15); 
+    color: #ffc107 !important; 
+}
+
+/* =========================================
+   CARDS & CONTAINERS
+   ========================================= */
+.card { 
+    border: 1px solid #e2e8f0; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.04); 
+    background-color: #ffffff;
+}
+
+.card-header-custom { 
+    background-color: #800000; 
+    color: #ffffff !important; 
+    border-radius: 12px 12px 0 0 !important; 
+    padding: 1rem 1.5rem; 
+    border-bottom: none;
+}
+.lead-header-custom { 
+    background-color: #1e293b; 
+    color: #ffffff !important; 
+    border-radius: 12px 12px 0 0 !important; 
+    padding: 1rem 1.5rem; 
+    border-bottom: none;
+}
+
+.step-container { 
+    background: #ffffff; 
+    padding: 2.5rem; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05); 
+    margin-bottom: 2rem; 
+}
+
+/* =========================================
+   FORMS & INPUTS
+   ========================================= */
+.form-control, .form-select { 
+    background-color: #ffffff; 
+    border: 1px solid #cbd5e1; 
+    color: #1e293b;
+    border-radius: 8px;
+}
+.form-control:focus, .form-select:focus { 
+    border-color: #800000; 
+    box-shadow: 0 0 0 0.25rem rgba(128, 0, 0, 0.15); 
+}
+.form-label {
+    font-weight: 500;
+    color: #334155;
+}
+
+/* =========================================
+   LISTS & TABLES
+   ========================================= */
+.nominee-list { max-height: 550px; overflow-y: auto; padding: 0; margin: 0; list-style: none; }
+.nominee-item { padding: 15px; cursor: pointer; border-bottom: 1px solid #e2e8f0; transition: 0.2s; background-color: #ffffff; }
+.nominee-item:hover { background-color: #f8fafc; }
+.nominee-item.active { 
+    background-color: #fff5f5; 
+    border-left: 4px solid #800000; 
+    font-weight: 600; 
+    color: #800000; 
+}
+
+.outlier-score { 
+    background-color: #fef2f2 !important; 
+    color: #b91c1c !important; 
+    font-weight: 700; 
+    border: 2px solid #f87171; 
+    border-radius: 6px;
+}
+
+/* =========================================
+   CUSTOM UI COMPONENTS
+   ========================================= */
+.check-card {
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 16px;
+    transition: 0.2s ease;
+    background-color: #f8fafc;
+    cursor: pointer;
+}
+.check-card:hover {
+    border-color: #800000;
+    background-color: #fff5f5;
+}
+.form-check-input:checked {
+    background-color: #800000;
+    border-color: #800000;
+}
+
+/* Responsive Action Buttons Layout */
+.action-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+.action-buttons-right {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .action-buttons-container {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+    .action-buttons-right {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn { width: 100%; }
+}

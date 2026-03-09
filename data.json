@@ -1,0 +1,7 @@
+{
+    "nominees": [
+        { "id": 1, "name": "Dr. Juan Dela Cruz", "dept": "Computer Science", "status": "Pending" },
+        { "id": 2, "name": "Prof. Maria Santos", "dept": "Engineering", "status": "Pending" },
+        { "id": 3, "name": "Dr. Alan Turing", "dept": "Mathematics", "status": "Pending" }
+    ]
+}

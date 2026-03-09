@@ -3,398 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outstanding Faculty Awards - Pro Prototype</title>
-    
+    <title>BSU Outstanding Faculty Awards</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body { background-color: #f1f5f9; font-family: 'Inter', sans-serif; color: #1e293b; }
-        .nav-role-switcher { background-color: #0f172a; color: white; padding: 15px 0; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        
-        /* Card Styles */
-        .card { border: none; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); background-color: #ffffff; }
-        .card-header-custom { background-color: #1e3a8a; color: #ffffff; border-radius: 12px 12px 0 0 !important; padding: 1rem 1.5rem; }
-        .lead-header-custom { background-color: #064e3b; color: #ffffff; border-radius: 12px 12px 0 0 !important; padding: 1rem 1.5rem; }
-        
-        /* Text fixes */
-        .text-dark-custom { color: #0f172a !important; }
-        .form-label { color: #334155; font-size: 0.9rem; }
-        .form-control { background-color: #f8fafc; border: 1px solid #cbd5e1; color: #0f172a; }
-        .form-control:focus { background-color: #ffffff; border-color: #3b82f6; box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25); }
-        
-        /* Sidebar List */
-        .nominee-list { max-height: 550px; overflow-y: auto; padding: 0; margin: 0; list-style: none; }
-        .nominee-item { padding: 15px; cursor: pointer; transition: all 0.2s; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; color: #334155; }
-        .nominee-item:hover { background-color: #f8fafc; }
-        .nominee-item.active { background-color: #eff6ff; border-left: 4px solid #2563eb; font-weight: 600; color: #1e40af; }
-        
-        /* Table Styles */
-        .table { color: #1e293b; }
-        .table thead th { background-color: #f1f5f9; color: #475569; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #cbd5e1; }
-        .table tbody td { vertical-align: middle; }
-        .outlier-score { background-color: #fef2f2 !important; color: #b91c1c !important; font-weight: 700; border: 2px solid #f87171; border-radius: 4px;}
-        
-        /* Avatars */
-        .avatar-img { border-radius: 50%; object-fit: cover; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="nav-role-switcher text-center mb-4">
-        <span class="me-3 fw-bold"><i class="fas fa-toggle-on text-info"></i> Role Switcher:</span>
-        <div class="btn-group" role="group">
-            <input type="radio" class="btn-check" name="roleSwitch" id="btnEval" checked onchange="switchRole('evaluator')">
-            <label class="btn btn-outline-info btn-sm px-4" for="btnEval">1. Evaluator View</label>
-            <input type="radio" class="btn-check" name="roleSwitch" id="btnLead" onchange="switchRole('lead')">
-            <label class="btn btn-outline-info btn-sm px-4" for="btnLead">2. Lead Evaluator View</label>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm custom-navbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#/"><i class="fas fa-award text-warning me-2"></i>BSU OFA System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="topNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-medium">
+                    <li class="nav-item"><a class="nav-link nav-menu-link" href="#/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link nav-menu-link" href="#/nominate">Nominate</a></li>
+                    <li class="nav-item"><a class="nav-link nav-menu-link" href="#/track">Track</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link nav-menu-link" href="#/admin">Admin Staff</a></li>
+                    
+                    <li class="nav-item"><a class="nav-link nav-menu-link" href="#/evaluator">Evaluator</a></li>
+                    <li class="nav-item"><a class="nav-link nav-menu-link" href="#/lead">Lead Evaluator</a></li>
+                </ul>
+            </div>
         </div>
-        <button class="btn btn-danger btn-sm ms-4" onclick="resetData()"><i class="fas fa-trash-alt me-1"></i> Clear Local Storage</button>
+    </nav>
+
+    <div class="app-wrapper">
+        <main id="app" class="container py-4">
+            </main>
     </div>
-
-    <div class="container pb-5">
-
-        <div id="evaluatorView">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="text-dark-custom fw-bold"><i class="fas fa-user-edit text-primary me-2"></i> Evaluator Portal</h2>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-header bg-white border-bottom py-3">
-                            <h6 class="mb-0 text-dark-custom fw-bold"><i class="fas fa-users me-2"></i> Assigned Nominees</h6>
-                        </div>
-                        <ul class="nominee-list" id="nomineeSidebar">
-                            </ul>
-                    </div>
-                </div>
-
-                <div class="col-md-8">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-header card-header-custom d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0 d-flex align-items-center" id="formTitle">
-                                <i class="fas fa-file-signature me-2"></i> Select a nominee
-                            </h5>
-                            <span id="statusBadge" class="badge bg-light text-dark">Status: No Selection</span>
-                        </div>
-                        
-                        <div class="card-body p-4" id="formBody" style="display: none;">
-                            <form id="evaluationForm">
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold"><i class="fas fa-chalkboard-teacher text-primary me-1"></i> Teaching (40%)</label>
-                                        <input type="number" class="form-control form-control-lg" id="scoreTeaching" min="1" max="100" placeholder="0-100" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold"><i class="fas fa-microscope text-primary me-1"></i> Research (30%)</label>
-                                        <input type="number" class="form-control form-control-lg" id="scoreResearch" min="1" max="100" placeholder="0-100" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold"><i class="fas fa-hands-helping text-primary me-1"></i> Community (20%)</label>
-                                        <input type="number" class="form-control form-control-lg" id="scoreCommunity" min="1" max="100" placeholder="0-100" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold"><i class="fas fa-briefcase text-primary me-1"></i> Prof. Dev (10%)</label>
-                                        <input type="number" class="form-control form-control-lg" id="scoreProfessional" min="1" max="100" placeholder="0-100" required>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <label class="form-label fw-bold"><i class="fas fa-comment-dots text-primary me-1"></i> Qualitative Feedback</label>
-                                    <textarea id="evalComments" class="form-control" rows="3" placeholder="Explain the rationale behind your scores..."></textarea>
-                                </div>
-                                <div class="text-end mt-4 pt-3 border-top">
-                                    <button type="button" id="btnDraft" class="btn btn-outline-secondary px-4 me-2 fw-bold" onclick="saveData('draft')">
-                                        <i class="fas fa-save me-1"></i> Save Draft
-                                    </button>
-                                    <button type="button" id="btnSubmit" class="btn btn-primary px-4 fw-bold" onclick="confirmSubmit()">
-                                        <i class="fas fa-paper-plane me-1"></i> Submit Score
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-muted" id="formPlaceholder" style="min-height: 400px;">
-                            <img src="https://cdn-icons-png.flaticon.com/512/7486/7486747.png" alt="Select" width="100" class="mb-3 opacity-50">
-                            <h4 class="text-dark-custom">Ready to Evaluate?</h4>
-                            <p>Click on a nominee's name from the sidebar to view their documents and start scoring.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    
+    <footer class="footer mt-auto py-4 bg-white border-top text-center text-muted">
+        <div class="container">
+            <small class="fw-medium">&copy; 2026 Bulacan State University - Outstanding Faculty Awards System. All Rights Reserved.</small>
         </div>
-
-        <div id="leadView" style="display: none;">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="text-dark-custom fw-bold"><i class="fas fa-chart-line text-success me-2"></i> Lead Evaluator Dashboard</h2>
-                <button class="btn btn-success fw-bold"><i class="fas fa-download me-2"></i> Export Report</button>
-            </div>
-
-            <div class="card shadow-sm border-0">
-                <div class="card-header lead-header-custom d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0 fw-bold"><i class="fas fa-trophy text-warning me-2"></i> Category: Teaching Effectiveness (40%)</h5>
-                </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover mb-0 text-center">
-                            <thead>
-                                <tr>
-                                    <th class="text-start ps-4">Nominee Profile</th>
-                                    <th>Eval A</th>
-                                    <th>Eval B</th>
-                                    <th>Eval C</th>
-                                    <th class="text-primary">Eval D (Your Input)</th>
-                                    <th class="bg-light">Mean Score</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="leadTableBody">
-                                </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card-footer bg-white p-3 text-end border-top">
-                    <button class="btn btn-dark fw-bold px-4" onclick="finalizeSystem()">
-                        <i class="fas fa-check-double me-2"></i> Validate & Finalize Category Rankings
-                    </button>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-
-    <script>
-        // Data Structure for Multiple Nominees
-        const nominees = [
-            { id: 1, name: "Dr. Juan Dela Cruz", mockA: 95, mockB: 92, mockC: 91, color: "0D8ABC" },
-            { id: 2, name: "Prof. Maria Santos", mockA: 88, mockB: 85, mockC: 89, color: "E83E8C" },
-            { id: 3, name: "Dr. Alan Turing", mockA: 98, mockB: 99, mockC: 97, color: "20C997" }
-        ];
-
-        let evaluatorData = JSON.parse(localStorage.getItem('multiEvalDataPro')) || {};
-        let currentNomineeId = null;
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderSidebar();
-            renderLeadTable();
-        });
-
-        // ================= EVALUATOR FUNCTIONS =================
-
-        function renderSidebar() {
-            const sidebar = document.getElementById('nomineeSidebar');
-            sidebar.innerHTML = '';
-            
-            nominees.forEach(nom => {
-                const data = evaluatorData[nom.id] || { status: 'pending' };
-                
-                let statusIcon = '';
-                if(data.status === 'submitted') statusIcon = '<span class="badge bg-success"><i class="fas fa-check"></i> Done</span>';
-                else if(data.status === 'draft') statusIcon = '<span class="badge bg-warning text-dark"><i class="fas fa-pen"></i> Draft</span>';
-                else statusIcon = '<span class="badge bg-secondary"><i class="fas fa-clock"></i> Pending</span>';
-
-                sidebar.innerHTML += `
-                    <li class="nominee-item ${currentNomineeId === nom.id ? 'active' : ''}" onclick="selectNominee(${nom.id}, '${nom.name}', '${nom.color}')">
-                        <div class="d-flex align-items-center">
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(nom.name)}&background=${nom.color}&color=fff&bold=true" class="avatar-img me-3" width="40" alt="avatar">
-                            <div>
-                                <h6 class="mb-0 fw-bold">${nom.name}</h6>
-                                <small class="text-muted">ID: NOM-${1000 + nom.id}</small>
-                            </div>
-                        </div>
-                        <div>${statusIcon}</div>
-                    </li>
-                `;
-            });
-        }
-
-        function selectNominee(id, name, color) {
-            currentNomineeId = id;
-            document.getElementById('formPlaceholder').style.display = 'none';
-            document.getElementById('formBody').style.display = 'block';
-            
-            // Set Header with Avatar
-            document.getElementById('formTitle').innerHTML = `
-                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=${color}&color=fff&bold=true" class="avatar-img me-2" width="30"> 
-                Scoring: ${name}
-            `;
-            
-            renderSidebar(); 
-            loadFormData(id);
-        }
-
-        function loadFormData(id) {
-            const data = evaluatorData[id] || { scores: { teaching: '', research: '', community: '', professional: '' }, comments: '', status: 'pending' };
-            
-            document.getElementById('scoreTeaching').value = data.scores.teaching;
-            document.getElementById('scoreResearch').value = data.scores.research;
-            document.getElementById('scoreCommunity').value = data.scores.community;
-            document.getElementById('scoreProfessional').value = data.scores.professional;
-            document.getElementById('evalComments').value = data.comments;
-
-            let badge = document.getElementById('statusBadge');
-            let inputs = document.querySelectorAll('#evaluationForm input, #evaluationForm textarea');
-            let btnDraft = document.getElementById('btnDraft');
-            let btnSubmit = document.getElementById('btnSubmit');
-
-            if (data.status === 'submitted') {
-                badge.className = 'badge bg-success text-white';
-                badge.innerHTML = '<i class="fas fa-lock me-1"></i> Submitted';
-                inputs.forEach(el => el.disabled = true);
-                btnDraft.style.display = 'none';
-                btnSubmit.style.display = 'none';
-            } else {
-                badge.className = data.status === 'draft' ? 'badge bg-warning text-dark' : 'badge bg-secondary text-white';
-                badge.innerText = data.status === 'draft' ? 'Draft Saved' : 'Pending Review';
-                inputs.forEach(el => el.disabled = false);
-                btnDraft.style.display = 'inline-block';
-                btnSubmit.style.display = 'inline-block';
-            }
-        }
-
-        function saveData(status) {
-            if (!currentNomineeId) return;
-            
-            evaluatorData[currentNomineeId] = {
-                scores: {
-                    teaching: document.getElementById('scoreTeaching').value,
-                    research: document.getElementById('scoreResearch').value,
-                    community: document.getElementById('scoreCommunity').value,
-                    professional: document.getElementById('scoreProfessional').value
-                },
-                comments: document.getElementById('evalComments').value,
-                status: status
-            };
-
-            localStorage.setItem('multiEvalDataPro', JSON.stringify(evaluatorData));
-            renderSidebar();
-            renderLeadTable(); // Ensure real-time connection to Lead view
-
-            if(status === 'draft') {
-                Swal.fire({ icon: 'success', title: 'Draft Saved', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-                loadFormData(currentNomineeId);
-            }
-        }
-
-        function confirmSubmit() {
-            if(!document.getElementById('evaluationForm').checkValidity()) {
-                Swal.fire('Form Incomplete', 'Please provide scores for all criteria.', 'warning');
-                return;
-            }
-
-            Swal.fire({
-                title: 'Lock & Submit?',
-                text: "You won't be able to edit these scores once submitted to the Lead Evaluator.",
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonColor: '#2563eb',
-                confirmButtonText: 'Yes, submit it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    saveData('submitted');
-                    loadFormData(currentNomineeId); 
-                    Swal.fire('Success', 'Evaluation successfully sent to Lead Dashboard.', 'success');
-                }
-            });
-        }
-
-        // ================= LEAD EVALUATOR FUNCTIONS =================
-
-        function renderLeadTable() {
-            const tbody = document.getElementById('leadTableBody');
-            tbody.innerHTML = '';
-
-            nominees.forEach(nom => {
-                const myData = evaluatorData[nom.id];
-                // Focus on Teaching Score for the prototype table
-                let myScore = myData && myData.scores.teaching ? parseFloat(myData.scores.teaching) : 0;
-                let totalEvals = myScore > 0 ? 4 : 3;
-                let mean = ((nom.mockA + nom.mockB + nom.mockC + myScore) / totalEvals).toFixed(2);
-                
-                // Outlier Logic: If score differs from average by more than 15 points
-                let isOutlier = myScore > 0 && Math.abs(myScore - mean) >= 15;
-                let scoreDisplay = myScore > 0 ? `<span class="fw-bold">${myScore}</span>` : `<span class="badge bg-light text-muted">Awaiting</span>`;
-                
-                // Styling connection
-                let outlierClass = isOutlier ? 'outlier-score p-2' : 'p-2';
-                let flagAlert = isOutlier ? `<br><small class="text-danger"><i class="fas fa-exclamation-triangle"></i> Deviates widely</small>` : '';
-
-                tbody.innerHTML += `
-                    <tr>
-                        <td class="text-start ps-4 py-3">
-                            <div class="d-flex align-items-center">
-                                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(nom.name)}&background=${nom.color}&color=fff" class="avatar-img me-3" width="35">
-                                <span class="fw-bold text-dark-custom">${nom.name}</span>
-                            </div>
-                        </td>
-                        <td class="align-middle text-muted">${nom.mockA}</td>
-                        <td class="align-middle text-muted">${nom.mockB}</td>
-                        <td class="align-middle text-muted">${nom.mockC}</td>
-                        <td class="align-middle">
-                            <div class="${outlierClass} d-inline-block rounded">
-                                ${scoreDisplay}
-                                ${flagAlert}
-                            </div>
-                        </td>
-                        <td class="bg-light fw-bold align-middle fs-5 text-dark-custom">${mean}</td>
-                        <td class="align-middle">
-                            <button class="btn btn-outline-danger btn-sm fw-bold" ${myScore === 0 ? 'disabled' : ''} onclick="flagScore('${nom.name}')">
-                                <i class="fas fa-flag"></i> Flag
-                            </button>
-                        </td>
-                    </tr>
-                `;
-            });
-        }
-
-        function flagScore(name) {
-            Swal.fire({
-                title: 'Flag for Review',
-                input: 'textarea',
-                inputLabel: `Reason for flagging ${name}'s score:`,
-                inputPlaceholder: 'Enter justification here...',
-                showCancelButton: true,
-                confirmButtonColor: '#dc2626',
-                confirmButtonText: '<i class="fas fa-save"></i> Save to Audit Log'
-            }).then((result) => {
-                if (result.isConfirmed && result.value) {
-                    Swal.fire('Flagged!', 'The anomaly has been logged and the Evaluator will be notified.', 'success');
-                }
-            });
-        }
-
-        function finalizeSystem() {
-            Swal.fire({
-                title: 'Approve Results?',
-                text: "This will finalize category rankings and send the summary report to the Dean.",
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#064e3b',
-                confirmButtonText: 'Validate & Send'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire('Finalized', 'The Dean has been notified.', 'success');
-                }
-            });
-        }
-
-        // ================= UTILITIES =================
-        function switchRole(role) {
-            document.getElementById('evaluatorView').style.display = role === 'evaluator' ? 'block' : 'none';
-            document.getElementById('leadView').style.display = role === 'lead' ? 'block' : 'none';
-            if(role === 'lead') {
-                renderLeadTable(); // Refresh the connection when switching
-            }
-        }
-
-        function resetData() {
-            localStorage.removeItem('multiEvalDataPro');
-            location.reload();
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/db.js"></script>
+    <script src="js/views/home.js"></script>
+    <script src="js/views/nominate.js"></script>
+    <script src="js/views/track.js"></script>
+    
+    <script src="js/views/admin.js"></script>
+    
+    <script src="js/views/eval.js"></script>
+    <script src="js/views/lead.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
